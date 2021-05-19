@@ -31,7 +31,7 @@
   </section>
 
    
-  <section class="w-full grayhsll pt-16 overflow-x-hidden">
+  <section class="w-full grayhsll pt-16 overflow-x-hidden maload">
 
      <div id="load" class="loader pt-10 w-2/12 mx-auto hidden">
       <img class="w-16 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Ajax_loader_metal_512.gif"/>
@@ -258,6 +258,9 @@ export default {
 
 .enactus{
   z-index: -999999999999;
+} 
+.maload{
+  z-index: -999999999999999999;
 } 
 
 .zufi{

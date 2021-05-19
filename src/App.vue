@@ -9,9 +9,9 @@
       </div>
     </section>
     
-    <div class="relative w-full sm:h-36 h-48 dark-violet sm:mt-20 mt-0 -mb-20 rounded-t-2xl rounded-b-2xl border-black mb-60">
+    <div class="enactus relative w-full sm:h-36 h-48 dark-violet sm:mt-20 mt-0 -mb-20 rounded-t-2xl rounded-b-2xl border-black mb-60">
 
-      <form @submit.prevent="enactUrl" class="relative flex sm:flex-row flex-col justify-between w-11/12 gap-4 mx-auto pt-12 mputa">
+      <form @submit.prevent="enactUrl" class="mputa relative flex sm:flex-row flex-col justify-between w-11/12 gap-4 mx-auto pt-12">
           
           <input v-model="formus" type="text" class="focus:outline-none mputa py-3 px-2 w-full rounded-t-xl rounded-b-xl bg-white" placeholder="Shorten a link here..."/>
           <div v-if="inputError" class="error text-red-500 poppins italic absolute sm:top-28 top-5 left-0">{{ inputError }}</div>
@@ -225,15 +225,6 @@ export default {
         document.execCommand('copy');
         inputc.parentNode.removeChild(inputc);
 
-
-        // var inputc = document.body.appendChild(document.createElement("div"));
-        // const kolo = document.getElementById('lagoon');
-        // inputc.innerHTML = kolo.textContent;
-        // console.log(inputc)
-        // // inputc.focus();
-        // // inputc.select();
-        // document.execCommand('copy');
-        // inputc.parentNode.removeChild(inputc);
     }
 
 
@@ -258,19 +249,23 @@ export default {
   background: hsl(257, 27%, 26%)
 }
 .mputa{
-  z-index:999999999999999999999999999999999999999999999999999999999999999999999;
+  z-index:999;
 }
 
 .lexo{
   z-index: -2;
 }
 
+.enactus{
+  z-index: -999999999999;
+} 
 
 .zufi{
-  z-index: 1;
+  z-index: -999;
 }
+
 .zufiii{
-  z-index: -1;
+  z-index: -999;
 }
 .subito{
   background: hsl(180, 66%, 49%);

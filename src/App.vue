@@ -257,18 +257,16 @@ export default {
 }
 
 .enactus{
-  z-index: -999999999999;
-} 
-.maload{
-  z-index: -999999999999999999;
+  z-index:1;
 } 
 
+
 .zufi{
-  z-index: -999;
+  z-index: -99;
 }
 
 .zufiii{
-  z-index: -999;
+  z-index: -99;
 }
 .subito{
   background: hsl(180, 66%, 49%);

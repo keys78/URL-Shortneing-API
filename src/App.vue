@@ -186,7 +186,7 @@ export default {
 
         setTimeout(function() {
             document.getElementById('load').style.display = "none";
-           }, 10000);
+           }, 20000);
 
       this.block = !this.block
   
@@ -309,6 +309,6 @@ export default {
   margin-bottom: -800px;
 }
 :root{
-  --animate-delay: 2s;
+  --animate-delay: 4s;
 }
 </style>

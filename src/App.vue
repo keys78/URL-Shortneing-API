@@ -175,25 +175,15 @@ export default {
       this.inputError = this.formus.length > 1 ? '' : 'Please add a link'
       this.load = this.formus.length > 1 ? true : false
 
-      // document.getElementById('load').style.display = "block";
-
-      //   setTimeout(() => {
-      //       document.getElementById('load').style.display = "none";
-      //      }, 20000);
-
-        
-  
         fetch(`https://api.shrtco.de/v2/shorten?url=` + this.formus) 
         .then((res) => {
             return res.json();
         })
         .then((data) => {
-            console.log(data);
-            
+          console.log(data)
             this.full_short_link = data.result.full_short_link
        
         })
-        
         
         .finally(() => {
           this.block = true
@@ -206,22 +196,14 @@ export default {
             this.block = false
         })
         
-      
-
-       
     //otimando
     },
 
-       copyUp() {
-        this.copy = !this.copy
+       copyUp(e) {
+         e.preventDefault();
+        this.copy = !this.copy;
         var inputc = document.body.appendChild(document.createElement("input"));
-        const kolo = document.getElementById('kolo').innerHTML;
-        inputc.value = kolo;
-        console.log(inputc)
-        inputc.focus();
-        inputc.select();
-        document.execCommand('copy');
-        inputc.parentNode.removeChild(inputc);
+        inputc.value = this.full_short_link; inputc.focus();inputc.select();document.execCommand('copy');inputc.parentNode.removeChild(inputc);
 
     }
 
@@ -234,11 +216,6 @@ export default {
 .poppins{
   font-family: 'Poppins', sans-serif;
 }
-
-/* .kpokoto{
-  position:relative;
-  right:-70px;
-} */
 
 .dark-violet{
   background: hsl(255, 11%, 22%)
@@ -306,9 +283,5 @@ export default {
 .adjustive{
   margin-bottom: -800px;
 }
-:root{
-  --animate-delay: 4s;
-}
 
-/* animate__animated animate__faster animate__backInRight animate__delay-5s */
 </style>

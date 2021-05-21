@@ -46,7 +46,7 @@ export default {
     data() {
 
         return {
-            showBar: true,
+            showBar: false,
         }
 
     },

@@ -10,23 +10,14 @@
     </section>
     
     <div class="enactus relative w-full sm:h-36 h-48 dark-violet sm:mt-20 mt-0 -mb-20 rounded-t-2xl rounded-b-2xl border-black mb-60">
-
       <form @submit.prevent="enactUrl" class="mputa relative flex sm:flex-row flex-col justify-between w-11/12 gap-4 mx-auto pt-12">
-          
           <input v-model="formus" type="text" class="focus:outline-none mputa py-3 px-2 w-full rounded-t-xl rounded-b-xl bg-white" placeholder="Shorten a link here..."/>
           <div v-if="inputError" class="error text-red-500 poppins italic absolute sm:top-28 top-5 left-0">{{ inputError }}</div>
           <input type="submit" value="Shorten It!" class="md:w-2/12 sm:w-3/12 w-full font-medium subito mputa py-3 px-2 rounded-t-xl rounded-b-xl"/>
-          
       </form>
-      
-       
         <img class="sm:block hidden zufi rounded-t-2xl rounded-b-2xl absolute top-0 left-0 w-full h-36" src="./assets/images/bg-shorten-desktop.svg" />
         <img class="sm:hidden block zufi rounded-t-2xl rounded-b-2xl absolute top-0 left-0 w-full h-48" src="./assets/images/bg-shorten-mobile.svg" />
     </div>
-
-         
-  
-    
 
   </section>
 
@@ -37,11 +28,11 @@
       <img class="w-16 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Ajax_loader_metal_512.gif"/>
     </div>
 
-       <div v-if="block" class="sm:flex-row flex-col animate__animated animate__faster animate__backInRight animate__delay-5s flex justify-between sm:items-center py-3 mt-10 bg-white px-2 rounded xl:w-9/12 lg:w-10/12 w-11/12 mx-auto">
+       <div v-if="block" class="sm:flex-row flex-col flex justify-between sm:items-center py-3 mt-10 bg-white px-2 rounded xl:w-9/12 lg:w-10/12 w-11/12 mx-auto">
             <div class="sm:pl-6 sm:border-b-0 sm:py-0 py-1 border-b-2 text-left font-medium text-lg text-black">{{ formus }}</div>
 
             <div class="flex sm:flex-row flex-col items-center sm:gap-16 gap-2">
-              <div id="lagoon" class="sm:w-6/12 w-full lagon text-lg text-left sm:py-0 py-1 pt-1 font-medium text-white"></div>
+              <div class="sm:w-6/12 w-full lagon text-lg text-left sm:py-0 py-1 pt-1 font-medium text-white"> {{ full_short_link }} </div>
               <div @click.prevent="copyUp" class="sm:w-9/12 w-full">
                   <p v-if="!copy" class="w-full mx-auto cursor-pointer py-1 rounded sm:pr-4 text-center subito px-4">Copy</p>
                  <p v-if="copy" class="w-full mx-auto borontu text-lg py-1 rounded sm:pr-4 text-center text-white px-4 cursor-pointer">Copied!</p>
@@ -163,6 +154,7 @@ export default {
     return {
       formus: '',
       inputError: '',
+      full_short_link:'',
       block: false,
       copy:false,
       load:false,
@@ -198,18 +190,21 @@ export default {
         .then((data) => {
             console.log(data);
             
-            document.getElementById("lagoon").innerHTML = data.result.full_short_link
+            this.full_short_link = data.result.full_short_link
        
         })
-
-        .catch((err) => {
-            this.inputError = "unable to fetch link; try again"
-        })
+        
         
         .finally(() => {
-          this.load = false;
           this.block = true
-        });
+          this.load = false;
+        
+        })
+
+           .catch((err) => {
+            this.inputError = "unable to short fetch link; try again"
+            this.block = false
+        })
         
       
 
@@ -314,4 +309,6 @@ export default {
 :root{
   --animate-delay: 4s;
 }
+
+/* animate__animated animate__faster animate__backInRight animate__delay-5s */
 </style>

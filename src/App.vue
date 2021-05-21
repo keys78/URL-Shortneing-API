@@ -33,7 +33,7 @@
    
   <section class="w-full grayhsll pt-16 overflow-x-hidden maload">
 
-     <div id="load" class="loader pt-10 w-2/12 mx-auto hidden">
+     <div v-if="load" class="loader pt-10 w-2/12 mx-auto">
       <img class="w-16 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Ajax_loader_metal_512.gif"/>
     </div>
 
@@ -41,8 +41,8 @@
             <div class="sm:pl-6 sm:border-b-0 sm:py-0 py-1 border-b-2 text-left font-medium text-lg text-black">{{ formus }}</div>
 
             <div class="flex sm:flex-row flex-col items-center sm:gap-16 gap-2">
-              <a href><div id="lagoon" class="sm:w-6/12 w-full lagon text-lg text-left sm:py-0 py-1 pt-1 font-medium text-white"></div></a>
-              <div @click.prevent="copyUp" class="sm:w-4/12 w-full">
+              <div id="lagoon" class="sm:w-6/12 w-full lagon text-lg text-left sm:py-0 py-1 pt-1 font-medium text-white"></div>
+              <div @click.prevent="copyUp" class="sm:w-9/12 w-full">
                   <p v-if="!copy" class="w-full mx-auto cursor-pointer py-1 rounded sm:pr-4 text-center subito px-4">Copy</p>
                  <p v-if="copy" class="w-full mx-auto borontu text-lg py-1 rounded sm:pr-4 text-center text-white px-4 cursor-pointer">Copied!</p>
               </div>
@@ -164,8 +164,9 @@ export default {
       formus: '',
       inputError: '',
       block: false,
-      copy:false
-      // output: 'my data'
+      copy:false,
+      load:false,
+      
     }
   },
 
@@ -178,36 +179,38 @@ export default {
 
   methods: {
     enactUrl() {
-      //validate input
-      this.inputError = this.formus.length > 1 ? 
-      '' : 'Please add a link'
+       document.getElementById("beep").play();
+      this.inputError = this.formus.length > 1 ? '' : 'Please add a link'
+      this.load = this.formus.length > 1 ? true : false
 
-      document.getElementById('load').style.display = "block";
+      // document.getElementById('load').style.display = "block";
 
-        setTimeout(function() {
-            document.getElementById('load').style.display = "none";
-           }, 20000);
+      //   setTimeout(() => {
+      //       document.getElementById('load').style.display = "none";
+      //      }, 20000);
 
-      this.block = !this.block
+        
   
         fetch(`https://api.shrtco.de/v2/shorten?url=` + this.formus) 
-        .then(function(res) {
+        .then((res) => {
             return res.json();
         })
-        .then(function(data) {
+        .then((data) => {
             console.log(data);
             
             document.getElementById("lagoon").innerHTML = data.result.full_short_link
        
         })
 
-        .catch(function(err){
-            console.log(err);
+        .catch((err) => {
+            this.inputError = "unable to fetch link; try again"
+        })
+        
+        .finally(() => {
+          this.load = false;
+          this.block = true
         });
         
-         document.getElementById("beep").play();
-        return false;
-
       
 
        

@@ -202,7 +202,7 @@ export default {
         })
 
            .catch((err) => {
-            this.inputError = "unable to short fetch link; try again"
+            this.inputError = "unable to fetch short link; try again"
             this.block = false
         })
         

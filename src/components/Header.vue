@@ -8,7 +8,7 @@
         </div>
         
         <div class="flex justify-between md:flex hidden items-center font-semibold poppins gap-4">
-            <h2 class="grayhsl">Login</h2>
+            <h2 class="cursor-pointer grayhsl">Login</h2>
             <Button class="font-medium" text="Sign Up" color="hsl(180, 66%, 49%)" textcolor="white"/>
         </div>
 

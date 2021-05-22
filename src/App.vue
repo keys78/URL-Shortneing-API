@@ -74,7 +74,7 @@
       
       <div class=" bg-white sm:h-64 h-72 lg:w-4/12 w-full mx-auto sm:px-8 px-2 text-center pb-20 pt-16 rounded mt-20">
         <div class="-mt-24 mb-10 rounded-full dark-blue w-3/12 lg:mx-0 mx-auto p-4">
-           <img src="./assets/images/icon-fully-customizable.svg" />
+           <img src="./assets/images/icon-fully-customizable.svg"/>
         </div>
         <h1 class="text-xl font-semibold poppins pb-3">Fully Customizable</h1>
         <p class="advstats poppins">Improve brand awareness and content discoverability through customizable 

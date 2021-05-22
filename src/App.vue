@@ -29,7 +29,7 @@
     </div>
 
        <div v-if="block" class="sm:flex-row flex-col flex justify-between sm:items-center py-3 mt-10 bg-white px-2 rounded xl:w-9/12 lg:w-10/12 w-11/12 mx-auto">
-            <div class="sm:pl-6 sm:border-b-0 sm:py-0 py-1 border-b-2 text-left font-medium text-lg text-black">{{ formus }}</div>
+            <div class="sm:pl-6 sm:border-b-0 sm:py-0 py-1 border-b-2 text-left font-medium text-lg text-black">{{ oLink }}</div>
 
             <div class="flex sm:flex-row flex-col items-center sm:gap-16 gap-2">
               <div class="sm:w-6/12 w-full lagon text-lg text-left sm:py-0 py-1 pt-1 font-medium text-white"> {{ full_short_link }} </div>
@@ -155,6 +155,7 @@ export default {
       formus: '',
       inputError: '',
       full_short_link:'',
+      oLink: '',
       block: false,
       copy:false,
       load:false,
@@ -172,6 +173,7 @@ export default {
   methods: {
     enactUrl() {
        document.getElementById("beep").play();
+       this.block = false
       this.inputError = this.formus.length > 1 ? '' : 'Please add a link'
       this.load = this.formus.length > 1 ? true : false
 
@@ -181,7 +183,7 @@ export default {
         })
         .then((data) => {
           console.log(data)
-            this.full_short_link = data.result.full_short_link
+            this.oLink = data.result.original_link;this.full_short_link = data.result.full_short_link
        
         })
         
@@ -201,7 +203,10 @@ export default {
 
        copyUp(e) {
          e.preventDefault();
-        this.copy = !this.copy;
+        this.copy = true
+        setTimeout(() => {
+          this.copy = false;
+        },5000)
         var inputc = document.body.appendChild(document.createElement("input"));
         inputc.value = this.full_short_link; inputc.focus();inputc.select();document.execCommand('copy');inputc.parentNode.removeChild(inputc);
 

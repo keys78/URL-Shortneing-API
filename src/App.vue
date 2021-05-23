@@ -42,7 +42,7 @@
 
     <div class="xl:w-4/12 lg:w-5/12 md:w-7/12 w-11/12 mx-auto pt-36 text-center">
       <h1 class="text-3xl font-bold poppins">Advanced Statistics</h1>
-      <p class="grayh3 poppins mt-3 font-medium">Track how your links are performing across the web with our advanced statistics dashboard.</p>
+      <p class="grayh3 poppins mt-3 font-medium">Track how your links are performing across the web with our advanced statistics dashboard</p>
     </div>
 
 

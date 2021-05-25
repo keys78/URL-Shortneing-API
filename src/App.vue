@@ -198,7 +198,7 @@ export default {
             this.block = false
         })
         
-    //otimandoo
+    //otimandohoo
     },
 
        copyUp(e) {
